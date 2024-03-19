@@ -5,8 +5,8 @@
 * {
   padding: 0;
   margin: 0;
-  user-select: none;
   box-sizing: border-box;
+  user-select: none;
 }
 
 body,
@@ -24,4 +24,21 @@ html,
   min-height: 100vh;
   width: 100%;
   color: aliceblue;
+}
+
+.circle {
+  position: absolute;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  --tw-bg-opacity: 1;
+  background-color: rgb(252 211 77 / var(--tw-bg-opacity));
+  border-width: 2px;
+  --tw-border-opacity: 1;
+  cursor: pointer;
+  border-color: rgb(100 116 139 / var(--tw-border-opacity));
+}
+.circle:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(74 222 128 / var(--tw-bg-opacity));
 }
