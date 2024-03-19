@@ -13,6 +13,13 @@ const PreviousScore = () => {
     setIsOpen(false);
   };
 
+  const getNumberSuffix = (index) => {
+    if (index === 1) return "st";
+    else if (index === 2) return "nd";
+    else if (index === 3) return "rd";
+    else return "th";
+  };
+
   return (
     <div>
       <button
@@ -35,11 +42,11 @@ const PreviousScore = () => {
               {previousScores.length > 0 ? (
                 <ul className="list-disc pl-4">
                   {previousScores.map((score, index) => (
-                    <li key={index} className="mt-2 text-xl">{index + 1}st - {score}</li>
+                    <li key={index} className="mt-2 text-xl">{index + 1}{getNumberSuffix(index + 1)} - {score}</li>
                   ))}
                 </ul>
               ) : (
-                <p className="mt-2">No scores saved yet</p>
+                <p className="text-xl mt-2">No scores saved yet</p>
               )}
             </div>
           </div>
