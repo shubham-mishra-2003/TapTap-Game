@@ -1,5 +1,6 @@
 import { useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
+import toast from "react-hot-toast";
 
 const PreviousScore = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -25,6 +26,7 @@ const PreviousScore = () => {
     localStorage.removeItem("previousScores");
     alert("All saved scores will be deleted!");
     closeModal();
+    toast.success("Saved scores deleted.");
   };
 
   return (
