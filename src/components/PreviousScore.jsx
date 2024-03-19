@@ -46,7 +46,7 @@ const PreviousScore = () => {
                   ))}
                 </ul>
               ) : (
-                <p className="text-xl mt-2">No scores saved yet</p>
+                <p className="mt-2">No scores saved yet</p>
               )}
             </div>
           </div>
