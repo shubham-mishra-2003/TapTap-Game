@@ -3,25 +3,26 @@ import PreviousScore from "./PreviousScore";
 
 const Board = () => {
   const [score, setScore] = useState(0);
+  const [buttonText, setButtonText] = useState("Start");
+  const [intervalId, setIntervalId] = useState(null); // State to hold interval id
 
-  useEffect(
-    () => {
-      updateScore();
-    },
-    [score]
-  );
+  useEffect(() => {
+    updateScore();
+  }, [score]);
 
   const createCircle = () => {
     const gameContainer = document.getElementById("game-container");
     const circle = document.createElement("div");
     circle.classList.add("circle");
-    circle.style.left = Math.random() * (gameContainer.offsetWidth - 50) + "px";
-    circle.style.top = Math.random() * (gameContainer.offsetHeight - 50) + "px";
+    circle.style.left =
+      Math.random() * (gameContainer.offsetWidth - 50) + "px";
+    circle.style.top =
+      Math.random() * (gameContainer.offsetHeight - 50) + "px";
 
     gameContainer.appendChild(circle);
 
     circle.addEventListener("click", () => {
-      setScore(prevScore => prevScore + 1);
+      setScore((prevScore) => prevScore + 1);
       gameContainer.removeChild(circle);
     });
 
@@ -31,8 +32,29 @@ const Board = () => {
   const updateScore = () => {
     const scoreElement = document.getElementById("score");
     if (scoreElement) {
-      scoreElement.textContent = "Score: " + score;
+      scoreElement.textContent = "Score : " + score;
     }
+  };
+
+  const handleButtonClick = () => {
+    if (buttonText === "Start") {
+      const id = setInterval(createCircle, 500);
+      setIntervalId(id); // Store interval id in state
+      setButtonText("Pause");
+    } else if (buttonText === "Pause") {
+      clearInterval(intervalId); // Clear interval when paused
+      setButtonText("Save");
+    } else if (buttonText === "Save") {
+      saveScore();
+    }
+  };
+
+  const saveScore = () => {
+    const previousScores = JSON.parse(localStorage.getItem("previousScores")) || [];
+    previousScores.push(score);
+    localStorage.setItem("previousScores", JSON.stringify(previousScores));
+    setButtonText("Start");
+    setScore(0);
   };
 
   return (
@@ -44,17 +66,12 @@ const Board = () => {
       <div className="w-full flex flex-col md:flex-row justify-center items-center md:gap-6 gap-2">
         <button
           className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 p-4 w-full md:w-80 rounded-3xl scale-90 transition-all text-xl active:scale-100 font-bold font-serif"
-          id="start"
-          onClick={() => {
-            setInterval(createCircle, 500);
-          }}
+          onClick={handleButtonClick}
         >
-          Start
+          {buttonText}
         </button>
         <div className="flex justify-center items-center gap-5">
-          <p className="md:text-3xl text-lg text-slate-400" id="score">
-            Score : 0
-          </p>
+          <p className="md:text-3xl text-lg text-slate-400" id="score" />
           <PreviousScore />
         </div>
       </div>
