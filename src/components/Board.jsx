@@ -64,7 +64,7 @@ const Board = () => {
       setScore(0);
       setTimeLeft(60);
       clearInterval(intervalId);
-      toast.success("Score saved");
+      toast.success(`Score saved, your score - ${score}`);
       setTimeout(() => {
         window.location.reload();
       }, 1100);
@@ -88,7 +88,7 @@ const Board = () => {
     setTimeLeft(60);
     toast.error("Oops!! time out");
     setTimeout(() => {
-      toast.success("Score saved");
+      toast.success(`Score saved, your score - ${score}`);
     }, 1100);
     setTimeout(() => {
       window.location.reload();
