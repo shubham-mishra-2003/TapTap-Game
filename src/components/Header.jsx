@@ -1,6 +1,6 @@
 const Header = () => {
   return (
-    <div className="flex justify-between items-center fixed top-0 left-0 w-full bg-black pr-6 pl-6 p-3 border-b-2 rounded-b-xl">
+    <div className="flex justify-between items-center fixed top-0 left-0 w-full bg-black pr-6 pl-6 p-3 border-b-2 rounded-b-xl z-10">
       <img
         src="./logo.png"
         width="70vw"

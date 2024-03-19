@@ -38,7 +38,3 @@ html,
   cursor: pointer;
   border-color: rgb(100 116 139 / var(--tw-border-opacity));
 }
-.circle:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(74 222 128 / var(--tw-bg-opacity));
-}
