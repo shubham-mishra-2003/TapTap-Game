@@ -26,6 +26,10 @@ html,
   color: aliceblue;
 }
 
+::-webkit-scrollbar{
+  display: none;
+}
+
 .circle {
   position: absolute;
   height: 40px;
